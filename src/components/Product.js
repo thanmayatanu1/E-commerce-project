@@ -12,7 +12,7 @@ return (
               <div style={{ width: '50%' }}>
                 <div className='product-item'>
                 <div>
-                <img src={productItem.imageUrl} width="100%" alt={productItem.title}/> 
+                <img src={productItem.imageUrl} width="300px" alt={productItem.title}/> 
                 <h2>{productItem.title}</h2>
                 <p>Price: Rs. {productItem.price}</p>
                 <button onClick={() => addToCart(productItem)} >Add To Cart</button>

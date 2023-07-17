@@ -16,7 +16,7 @@ function CartList ({cart}) {
                 CART.map((cartItem, cartindex) => {
                     return (
                         <div>
-                            <img src={cartItem.imageUrl} alt={cartItem.title}></img>
+                            <img src={cartItem.imageUrl} alt={cartItem.title} width="100px"></img>
                             <span>{cartItem.title}</span>
                             <button
                             onClick = {() => {
@@ -37,7 +37,7 @@ function CartList ({cart}) {
                             }}
                             
                             >+</button>
-                            <p style={{width: '10%'}}> Rs. {cartItem.price * cartItem.quantity}</p>
+                            <p style={{width: '5%'}}> Rs. {cartItem.price * cartItem.quantity}</p>
                         </div>
                     )
                 })

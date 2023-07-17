@@ -7,21 +7,25 @@ import CartList from './components/CartList';
 function App() {
   const [product] = useState([
     {
+      id: 1,
       title: 'Colors',
       price: 100,
       imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
     },
     {
+      id: 2,
       title: 'Black and white Colors',
       price: 50,
       imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
     },
     {
+      id: 3,
       title: 'Yellow and Black Colors',
       price: 70,
       imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
     },
     {
+      id: 4,
       title: 'Blue Color',
       price: 100,
       imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
@@ -30,33 +34,24 @@ function App() {
 
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
-  
 
   const addToCart = (data) => {
-    setCart([...cart, {...data, quantity: 1}]);
+    setCart([...cart, { ...data, quantity: 1 }]);
   };
 
-  const handleShow = (value) => {
-    setShowCart(value)
-
-  }
+  const handleShow = (shouldShowCart) => {
+    setShowCart(shouldShowCart);
+  };
 
   return (
     <div>
-      <Header count={cart.length} 
-      handleShow={handleShow}
-      
-      >
+      <Header count={cart.length} handleShow={handleShow} />
 
-      </Header>
-
-      {
-        showCart ? 
-        <CartList cart={cart}></CartList> :
-        <Product product={product} addToCart={addToCart}></Product>
-      }
-
-      <Product product={product} addToCart={addToCart}></Product>
+      {showCart ? (
+        <CartList key="cart" cart={cart} />
+      ) : (
+        <Product key="products" product={product} addToCart={addToCart} />
+      )}
     </div>
   );
 }
