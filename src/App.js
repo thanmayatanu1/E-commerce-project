@@ -1,33 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import Header from './components/Header';
 import Product from './components/Product';
-import Cart from './components/Cart';
-import About from './components/About';
-import Home from './components/Home';
+import CartList from './components/CartList';
 
 function App() {
+  const [product] = useState([
+    {
+      title: 'Colors',
+      price: 100,
+      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%201.png',
+    },
+    {
+      title: 'Black and white Colors',
+      price: 50,
+      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%202.png',
+    },
+    {
+      title: 'Yellow and Black Colors',
+      price: 70,
+      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%203.png',
+    },
+    {
+      title: 'Blue Color',
+      price: 100,
+      imageUrl: 'https://prasadyash2411.github.io/ecom-website/img/Album%204.png',
+    },
+  ]);
+
+  const [cart, setCart] = useState([]);
+  const [showCart, setShowCart] = useState(false);
+  
+
+  const addToCart = (data) => {
+    setCart([...cart, {...data, quantity: 1}]);
+  };
+
+  const handleShow = (value) => {
+    setShowCart(value)
+
+  }
+
   return (
     <div>
-       <Cart />
-      <h1>My Website</h1>
-      <nav>
-        <ul>
-          <li>
-            <a href="/">Home</a>
-          </li>
-          <li>
-            <a href="/about">About</a>
-          </li>
-        </ul>
-      </nav>
+      <Header count={cart.length} 
+      handleShow={handleShow}
+      
+      >
 
-      {/* Render the appropriate component based on the current URL */}
-      {window.location.pathname === '/about' ? <About /> : <Home />}
-      <Product />
-     
+      </Header>
+
+      {
+        showCart ? 
+        <CartList cart={cart}></CartList> :
+        <Product product={product} addToCart={addToCart}></Product>
+      }
+
+      <Product product={product} addToCart={addToCart}></Product>
     </div>
   );
-};
-
+}
 
 export default App;
