@@ -53,3 +53,32 @@
   padding: 10px;
   
 }
+
+.home {
+  background-color: #282c34;
+  justify-content: space-between;
+  padding: 20px 100px;
+  color: aliceblue;
+}
+
+.tours {
+
+  background-color: white;
+  justify-content: space-between;
+  padding: 20px 40px;
+  color: black;
+
+}
+
+.tour-item {
+  background-color: white;
+  justify-content: space-between;
+  padding: 20px 40px;
+  color: black;
+
+}
+
+.button {
+  background-color: aqua;
+  color: white;
+}

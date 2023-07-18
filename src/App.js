@@ -5,6 +5,7 @@ import Product from './components/Product';
 import CartList from './components/CartList';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import About from './components/About';
+import Home from './components/Home';
 
 
 function App() {
@@ -53,6 +54,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Product product={product} addToCart={addToCart} />} />
         <Route path="/about" element={<About />} />
+        <Route path="/home" element={<Home />} />
       </Routes>
 
       {showCart && <CartList key="cart" cart={cart} />}
