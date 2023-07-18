@@ -3,6 +3,9 @@ import './App.css';
 import Header from './components/Header';
 import Product from './components/Product';
 import CartList from './components/CartList';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import About from './components/About';
+
 
 function App() {
   const [product] = useState([
@@ -44,16 +47,18 @@ function App() {
   };
 
   return (
-    <div>
+    <Router>
       <Header count={cart.length} handleShow={handleShow} />
 
-      {showCart ? (
-        <CartList key="cart" cart={cart} />
-      ) : (
-        <Product key="products" product={product} addToCart={addToCart} />
-      )}
-    </div>
+      <Routes>
+        <Route path="/" element={<Product product={product} addToCart={addToCart} />} />
+        <Route path="/about" element={<About />} />
+      </Routes>
+
+      {showCart && <CartList key="cart" cart={cart} />}
+    </Router>
   );
 }
+
 
 export default App;
