@@ -18,6 +18,8 @@ function App() {
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
+  const [retryInterval, setRetryInterval] = useState(null);
 
   const addToCart = (data) => {
     setCart([...cart, { ...data, quantity: 1 }]);
@@ -27,20 +29,35 @@ function App() {
     setShowCart(shouldShowCart);
   };
 
-  useEffect(() => {
-    const fetchDataFromBackend = async () => {
-      setIsLoading(true);
-      try {
-        const data = await fetchData();
-        setProduct(data);
-      } catch (error) {
-        console.log(error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const retryFetchData = () => {
+    setError('');
+    setIsLoading(true);
+    setRetryInterval(setInterval(fetchDataFromBackend, 1000));
+  };
 
-    fetchDataFromBackend();
+  const cancelRetry = () => {
+    clearInterval(retryInterval);
+    setIsLoading(false);
+    setError('');
+  };
+
+  const fetchDataFromBackend = async () => {
+    try {
+      const data = await fetchData();
+      setProduct(data);
+      setIsLoading(false);
+      setError('');
+      clearInterval(retryInterval);
+    } catch (error) {
+      setError('Something went wrong....Retrying');
+    }
+  };
+
+  useEffect(() => {
+    retryFetchData();
+    return () => {
+      clearInterval(retryInterval);
+    };
   }, []);
 
   //   {
@@ -86,6 +103,12 @@ function App() {
 
       {isLoading ? (
         <div className="loader">Loading...</div>
+      ) : error ? (
+        <div>
+          <p>{error}</p>
+          <button onClick={retryFetchData}>Retry</button>
+          <button onClick={cancelRetry}>Cancel</button>
+        </div>
       ) : (
         <Routes>
           <Route path="/" element={<Product product={product} addToCart={addToCart} />} />
