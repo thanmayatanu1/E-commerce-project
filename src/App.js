@@ -13,11 +13,11 @@ async function fetchData() {
   return data;
 }
 
-
 function App() {
   const [product, setProduct] = useState([]);
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const addToCart = (data) => {
     setCart([...cart, { ...data, quantity: 1 }]);
@@ -28,9 +28,19 @@ function App() {
   };
 
   useEffect(() => {
-    fetchData()
-      .then((data) => setProduct(data))
-      .catch((error) => console.log(error));
+    const fetchDataFromBackend = async () => {
+      setIsLoading(true);
+      try {
+        const data = await fetchData();
+        setProduct(data);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchDataFromBackend();
   }, []);
 
   //   {
@@ -74,16 +84,18 @@ function App() {
     <Router>
       <Header count={cart.length} handleShow={handleShow} />
 
-      <Routes>
-        <Route path="/" element={<Product product={product} addToCart={addToCart} />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/cart" element={showCart && <CartList key="cart" cart={cart} />}
-      />
-      </Routes>
+      {isLoading ? (
+        <div className="loader">Loading...</div>
+      ) : (
+        <Routes>
+          <Route path="/" element={<Product product={product} addToCart={addToCart} />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/cart" element={showCart && <CartList key="cart" cart={cart} />} />
+        </Routes>
+      )}
     </Router>
   );
 }
-
 
 export default App;
