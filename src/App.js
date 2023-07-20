@@ -78,9 +78,9 @@ function App() {
         <Route path="/" element={<Product product={product} addToCart={addToCart} />} />
         <Route path="/about" element={<About />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/cart" element={showCart && <CartList key="cart" cart={cart} />}
+      />
       </Routes>
-
-      {showCart && <CartList key="cart" cart={cart} />}
     </Router>
   );
 }
