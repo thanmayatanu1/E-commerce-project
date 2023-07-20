@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useCallback} from 'react';
 import './App.css';
 import Header from './components/Header';
 import Product from './components/Product';
@@ -21,13 +21,19 @@ function App() {
   const [error, setError] = useState('');
   const [retryInterval, setRetryInterval] = useState(null);
 
-  const addToCart = (data) => {
-    setCart([...cart, { ...data, quantity: 1 }]);
-  };
+  const addToCart = useCallback((data) => {
+    setCart((prevCart) => [...prevCart, { ...data, quantity: 1 }]);
+  }, [setCart]);
 
-  const handleShow = (shouldShowCart) => {
+  const handleShow = useCallback((shouldShowCart) => {
     setShowCart(shouldShowCart);
-  };
+  }, [setShowCart]);
+
+  // const handleShow = (shouldShowCart) => {
+  //   setShowCart(shouldShowCart);
+  // };
+
+  
 
   const retryFetchData = () => {
     setError('');
