@@ -11,10 +11,8 @@ function Header(props) {
      <NavLink  exact to="/cart"  activeClassName="active"> <button onClick={() => props.handleShow(true)}>Cart
         <sup>{props.count}</sup> </button>
      </NavLink>
-     
-    
-    </div>
-  );
+     </div>
+     );
 };
 
 
