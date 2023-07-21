@@ -6,6 +6,7 @@ import CartList from './components/CartList';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import About from './components/About';
 import Home from './components/Home';
+import FetchMovies from './components/FetchMovies';
 
 async function fetchData() {
   const response = await fetch('https://api.pujakaitem.com/api/products');
@@ -119,6 +120,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Product product={product} addToCart={addToCart} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/fetchmovies" element={<FetchMovies />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={showCart && <CartList key="cart" cart={cart} />} />
         </Routes>
