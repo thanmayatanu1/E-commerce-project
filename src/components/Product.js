@@ -4,7 +4,7 @@ import '../App.css';
 
 function Product ({product, addToCart})  {
 return (
-    <div className='flex'>
+    <div className='product'>
       
         {
             product.map((productItem, productIndex) => {

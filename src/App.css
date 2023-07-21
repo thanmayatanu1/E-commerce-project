@@ -39,11 +39,16 @@
 
 .flex {
   padding: 1rem;
-  background-color: #434343;
+  background-color:grey;
   color: white;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.product {
+  display:flex;
+  flex-wrap: wrap;
 }
 
 .social{
@@ -66,7 +71,7 @@
 }
 
 .home {
-  background-color: #282c34;
+  background-color: white;
   justify-content: space-between;
   padding: 20px 100px;
   color: aliceblue;
