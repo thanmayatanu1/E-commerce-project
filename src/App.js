@@ -2,10 +2,10 @@ import React, { useState, useEffect, useCallback} from 'react';
 import './App.css';
 import Header from './components/Header';
 import Product from './components/Product';
-import CartList from './components/CartList';
+import CartList from './components/Store/CartList';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import About from './components/About';
-import Home from './components/Home';
+import Home from './components/Home/Home';
 import FetchMovies from './components/FetchMovies';
 
 async function fetchData() {

@@ -1,0 +1,51 @@
+.concert-list {
+    list-style-type: none;
+    padding: 0;
+   max-width: 80%;
+   margin:auto;
+  }
+  
+  .concert-item {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: row;
+    border-bottom: 1px solid black;
+  }
+  
+  .concert-date {
+    font-weight: bold;
+  
+  }
+  
+  .title{
+    font-family: 'Marker Felt, fantasy', cursive;
+    font-weight: 400;
+    margin: 2rem 0rem;
+    font-size: 3rem;
+    user-select: none;
+    text-align: center;
+}
+
+  .concert-details {
+ align-self: center;
+  }
+  
+  .concert-city {
+    font-size: 18px;
+    margin: 0px auto;
+  }
+  
+  .concert-venue {
+    font-size: 16px;
+    margin: 0px auto;
+  }
+  
+  .concert-tickets {
+    color: whitesmoke;
+    background-color: blue;
+    padding: 4px 10px;
+    border-radius: 5px;
+  }

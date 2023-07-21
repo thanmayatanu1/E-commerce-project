@@ -1,0 +1,22 @@
+.social{
+
+    padding: 1rem;
+    background-color: #434343;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    
+    }
+    .social span{
+        margin: 0px 10px;
+        cursor: pointer;
+        background-color: rgba(87, 44, 136, 0);
+        padding: 4px 10px;
+        border-radius: 7px;
+        transition: all .5s ease-in-out;
+    }
+    .social span:hover{
+       background-color: rgba(87, 44, 136, 0.568);
+    }

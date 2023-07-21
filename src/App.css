@@ -38,16 +38,27 @@
 }
 
 .flex {
+  padding: 1rem;
+  background-color: #434343;
+  color: white;
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.shopping-card{
+.social{
+
+  padding: 1rem;
+  background-color: #434343;
+  color: white;
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  background-color: #282c34;
-  padding: 20px 40px;
-  color: aliceblue;
-}
+  
+  
+  }
+
+
 
 .product-item {
   padding: 10px;
@@ -79,6 +90,6 @@
 }
 
 .button {
-  background-color: aqua;
+  background-color: dark  #434343;
   color: white;
 }

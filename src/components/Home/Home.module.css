@@ -1,0 +1,24 @@
+.home {
+    display: flex;
+    user-select: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 80vh;
+    background:url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e0fc4bb1-7582-4557-9386-046b61787bb3/d2lk6ow-08564a5a-d3ce-4b98-a8b5-7f0445092e73.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2UwZmM0YmIxLTc1ODItNDU1Ny05Mzg2LTA0NmI2MTc4N2JiM1wvZDJsazZvdy0wODU2NGE1YS1kM2NlLTRiOTgtYThiNS03ZjA0NDUwOTJlNzMuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.8y6FfAU7NzXgVVoqLH3QcXqv0OSAMCw0a0QIQGEk43Q');
+    background-position: center;
+    background-size: cover;
+    }
+  
+ svg{
+    margin: 10px 0px;
+ }
+  
+  .blink {
+    font-size: 6rem;
+    font-family: 'Dancing Script', cursive;
+    color: white;
+
+  }
+  
+ 
