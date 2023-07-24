@@ -9,7 +9,7 @@ function FetchMovies() {
   };
 
   const handleAddMovie = () => {
-    fetch('https://api.example.com/movies', {
+    fetch('https://react-http-2372d-default-rtdb.firebaseio.com/movies', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -27,7 +27,7 @@ function FetchMovies() {
   };
 
   const handleDeleteMovie = (id) => {
-    fetch(`https://api.example.com/movies/${id}`, {
+    fetch(`https://react-http-2372d-default-rtdb.firebaseio.com/movies/${id}`, {
       method: 'DELETE',
     })
       .then(() => {

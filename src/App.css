@@ -46,6 +46,19 @@
   justify-content: space-between;
 }
 
+.flex a {
+  color:white;
+  text-decoration:none;
+}
+
+.flex a:hover,
+.flex a:active,
+.flex a.active {
+  color:white;
+  padding-bottom: 0.25rem;
+ 
+}
+
 .product {
   display:flex;
   flex-wrap: wrap;
