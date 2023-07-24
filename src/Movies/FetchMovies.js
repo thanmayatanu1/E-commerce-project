@@ -1,68 +1,71 @@
 import React, { useState } from 'react';
+import {Form, Button, Container, Row, Col} from 'react-bootstrap';
 
-function FetchMovies() {
-  const [newMovie, setNewMovie] = useState({ title: '', director: '', year: '' });
-  const [movies, setMovies] = useState([]);
+function FetchMovies({ handleFormSubmit }) {
+  const [title, settitle] = useState('');
+  const [director, setdirector] = useState('');
+  const [year, setyear] = useState('');
+ 
 
-  const handleInputChange = (e) => {
-    setNewMovie({ ...newMovie, [e.target.name]: e.target.value });
-  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
 
-  const handleAddMovie = () => {
-    fetch('https://react-http-2372d-default-rtdb.firebaseio.com/movies', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newMovie),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setMovies([...movies, data]);
-        setNewMovie({ title: '', director: '', year: '' });
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
-  };
+    // Create a formData object with the entered values
+    const formData = {
+      title,
+      director,
+      year,
+    };
 
-  const handleDeleteMovie = (id) => {
-    fetch(`https://react-http-2372d-default-rtdb.firebaseio.com/movies/${id}`, {
-      method: 'DELETE',
-    })
-      .then(() => {
-        setMovies(movies.filter((movie) => movie.id !== id));
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-      });
+    // Pass the formData to the handleFormSubmit function
+    handleFormSubmit(formData);
+
+    // Reset the form fields
+    settitle('');
+    setdirector('');
+    setyear('');
   };
 
   return (
-    <div>
-      <label>
-        Title:
-        <input type="text" name="title" value={newMovie.title} onChange={handleInputChange} />
-      </label>
-      <label>
-        Director:
-        <input type="text" name="director" value={newMovie.director} onChange={handleInputChange} />
-      </label>
-      <label>
-        Year:
-        <input type="text" name="year" value={newMovie.year} onChange={handleInputChange} />
-      </label>
-      <button onClick={handleAddMovie}>Add Movie</button>
-
-      <ul>
-        {movies.map((movie) => (
-          <li key={movie.id}>
-            {movie.title} - {movie.director} ({movie.year})
-            <button onClick={() => handleDeleteMovie(movie.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container>
+        <Row>
+        <Col xs={12} md={6} className="mx-auto">
+        <div className="signup-form">
+      <h2>Welcome!!!</h2>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label>Title:</Form.Label>
+          <Form.Control
+            type="text"
+            value={title}
+            onChange={(e) => settitle(e.target.value)}
+            required
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Director:</Form.Label>
+          <Form.Control
+            type="email"
+            value={director}
+            onChange={(e) => setdirector(e.target.value)}
+            required
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label>Year:</Form.Label>
+          <Form.Control
+            type="tel"
+            value={year}
+            onChange={(e) => setyear(e.target.value)}
+            required
+          />
+        </Form.Group>
+        <Button type="submit">Add Movies</Button>
+      </Form>
+      </div>
+      </Col>
+      </Row>
+    </Container>
   );
 }
 

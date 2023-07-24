@@ -96,7 +96,7 @@ function App() {
           <Route path="/" element={<Product product={product} addToCart={addToCart} />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact us" element={<ContactUs handleFormSubmit={handleFormSubmit} />} />
-          <Route path="/fetchmovies" element={<FetchMovies />} />
+          <Route path="/fetchmovies" element={<FetchMovies handleFormSubmit={handleFormSubmit}/>} />
           <Route path="/product/:productId" element={<ProductPage product={product} />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={showCart && <CartList key="cart" cart={cart} />} />
