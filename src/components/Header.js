@@ -6,10 +6,11 @@ function Header(props) {
   return (
     <div className='flex'>
        <h1>The generics</h1>
-      <NavLink exact to="/home" activeClassName="active" ><button>Home</button></NavLink>
-      <NavLink  to="/" activeClassName="active"><button>Store</button></NavLink>
-      <NavLink  to="/about" activeClassName="active"><button>About</button></NavLink>
-      <NavLink  to="/fetchmovies" activeClassName="active"><button>Add Movie</button></NavLink>
+      <NavLink exact to="/home" activeClassName="active" >Home</NavLink>
+      <NavLink  to="/" activeClassName="active">Store</NavLink>
+      <NavLink  to="/about" activeClassName="active">About</NavLink>
+      <NavLink  to="/contact us" activeClassName="active">Contact Us</NavLink>
+      <NavLink  to="/fetchmovies" activeClassName="active">Add Movie</NavLink>
      <NavLink  exact to="/cart"  activeClassName="active"> <button onClick={() => props.handleShow(true)}>Cart
         <sup>{props.count}</sup>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">

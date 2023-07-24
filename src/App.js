@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback} from 'react';
+import React, { useState} from 'react';
 import './App.css';
 import Header from './components/Header';
 import Product from './components/Product';
@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import About from './components/About';
 import Home from './components/Home/Home';
 import FetchMovies from './Movies/FetchMovies';
+import ContactUs from './components/ContactUS/contact us';
+import axios from 'axios';
 
 
 function App() {
@@ -40,6 +42,7 @@ function App() {
 
   const [cart, setCart] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [error, setError] = useState('');
 
   const addToCart = (data) => {
     setCart([...cart, { ...data, quantity: 1 }]);
@@ -49,12 +52,25 @@ function App() {
     setShowCart(shouldShowCart);
   };
 
+  const handleFormSubmit = async (formData) => {
+    try {
+      await axios.post('https://react-http-2372d-default-rtdb.firebaseio.com/contacts.json' , formData);
+    } catch (error) {
+      setError('Something went wrong....Retrying');
+
+
+    }
+
+    };
+  
+
   return (
     <Router>
       <Header count={cart.length} handleShow={handleShow} />
       <Routes>
           <Route path="/" element={<Product product={product} addToCart={addToCart} />} />
           <Route path="/about" element={<About />} />
+          <Route path="/contact us" element={<ContactUs handleFormSubmit={handleFormSubmit} />} />
           <Route path="/fetchmovies" element={<FetchMovies />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={showCart && <CartList key="cart" cart={cart} />} />
