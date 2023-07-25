@@ -10,6 +10,7 @@ import FetchMovies from './components/Movies/FetchMovies';
 import ContactUs from './components/ContactUS/contact us';
 import ProductPage from './components/Store/ProductPage';
 import { ProductList, useCart, handleFormSubmit} from './components/Store/ProductList';
+import AuthForm from './components/Authentication/AuthForm';
 
 
 
@@ -28,6 +29,7 @@ function App() {
           <Route path="/product/:productId" element={<ProductPage product={ProductList} />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={showCart && <CartList key="cart" cart={cart} />} />
+          <Route path="/auth" element={<AuthForm />} />
         </Routes>
       </Router>
   );
