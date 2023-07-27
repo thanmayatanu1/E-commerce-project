@@ -1,9 +1,14 @@
 import React from 'react';
 import '../../App.css';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { Button } from 'react-bootstrap';
+import {useContext} from 'react';
+import AuthContext from '../Authentication/AuthContext';
 
 function Header(props) {
+  const authCtx = useContext(AuthContext);
+  const isLoggedIn= authCtx.isLoggedIn;
+
   return (
     <div className='flex'>
        <h1>The generics</h1>
@@ -12,7 +17,26 @@ function Header(props) {
       <NavLink  to="/about" activeClassName="active">About</NavLink>
       <NavLink  to="/contact us" activeClassName="active">Contact Us</NavLink>
       <NavLink  to="/fetchmovies" activeClassName="active">Add Movie</NavLink>
-      <NavLink  to="/auth" activeClassName="active"><Button>Log In</Button></NavLink>
+      <nav>
+            <ul>
+                {!isLoggedIn && (
+            
+                     <NavLink  to="/auth" activeClassName="active"><Button>Log In</Button></NavLink>
+                
+                )}
+                {isLoggedIn && (
+                <li>
+                    <Link to='/profile'><Button>Profile</Button></Link>
+                </li>
+                 )}
+                 {isLoggedIn && (
+                 <li>
+                    <Button>Logout</Button>
+                </li>
+                )}
+            </ul>
+        </nav>
+     
      <NavLink  exact to="/cart"  activeClassName="active"> <button onClick={() => props.handleShow(true)}>Cart
         <sup>{props.count}</sup>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
