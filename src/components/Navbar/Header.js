@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../App.css';
 import { NavLink } from 'react-router-dom';
+import { Button } from 'react-bootstrap';
 
 function Header(props) {
   return (
@@ -11,7 +12,7 @@ function Header(props) {
       <NavLink  to="/about" activeClassName="active">About</NavLink>
       <NavLink  to="/contact us" activeClassName="active">Contact Us</NavLink>
       <NavLink  to="/fetchmovies" activeClassName="active">Add Movie</NavLink>
-      <NavLink  to="/auth" activeClassName="active">Log In</NavLink>
+      <NavLink  to="/auth" activeClassName="active"><Button>Log In</Button></NavLink>
      <NavLink  exact to="/cart"  activeClassName="active"> <button onClick={() => props.handleShow(true)}>Cart
         <sup>{props.count}</sup>
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-fill" viewBox="0 0 16 16">
