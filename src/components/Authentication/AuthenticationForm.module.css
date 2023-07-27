@@ -35,7 +35,7 @@
     width: 100%;
     text-align: left;
     padding: 0.25rem;
-  }z
+  }
   
   .actions {
     margin-top: 1.5rem;
@@ -65,6 +65,9 @@
     color: #31a951;
     border: none;
     padding: 0.15rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
   
   .actions .toggle:hover {
