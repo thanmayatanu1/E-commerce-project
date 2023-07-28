@@ -9,6 +9,10 @@ function Header(props) {
   const authCtx = useContext(AuthContext);
   const isLoggedIn= authCtx.isLoggedIn;
 
+  const logoutHandler = () => {
+  authCtx.logout();
+  };
+
   return (
     <div className='flex'>
        <h1>The generics</h1>
@@ -31,7 +35,7 @@ function Header(props) {
                  )}
                  {isLoggedIn && (
                  <li>
-                    <Button>Logout</Button>
+                    <Button onClick={logoutHandler}>Logout</Button>
                 </li>
                 )}
             </ul>
