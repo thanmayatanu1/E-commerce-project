@@ -4,7 +4,7 @@ import AuthContext from './components/Authentication/AuthContext';
 import Header from './components/Navbar/Header';
 import Product from './components/Store/Product';
 import CartList from './components/Store/CartList';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route,  } from 'react-router-dom'
 import About from './components/About/About';
 import Home from './components/Home/Home';
 import FetchMovies from './components/Movies/FetchMovies';
@@ -19,6 +19,7 @@ import UserProfile from './components/Navbar/UserProfile';
 function App() {
   const authCtx = useContext(AuthContext);
   const { cart, showCart, addToCart, handleShow } = useCart();
+  
   
 
   return (
@@ -42,6 +43,7 @@ function App() {
           element={<UserProfile />} 
           />
           )}
+          
         </Routes>
       </Router>
   );
