@@ -1,4 +1,4 @@
-import HeaderForm from './ProfileForm';
+import ProfileForm from './ProfileForm';
 
 const UserProfile = () => {
     return(

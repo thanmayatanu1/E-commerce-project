@@ -1,5 +1,6 @@
-import React, { useState} from 'react';
+import { useContext} from 'react';
 import './App.css';
+import AuthContext from './components/Authentication/AuthContext';
 import Header from './components/Navbar/Header';
 import Product from './components/Store/Product';
 import CartList from './components/Store/CartList';
@@ -11,10 +12,12 @@ import ContactUs from './components/ContactUS/contact us';
 import ProductPage from './components/Store/ProductPage';
 import { ProductList, useCart, handleFormSubmit} from './components/Store/ProductList';
 import AuthForm from './components/Authentication/AuthForm';
+import UserProfile from './components/Navbar/UserProfile';
 
 
 
 function App() {
+  const authCtx = useContext(AuthContext);
   const { cart, showCart, addToCart, handleShow } = useCart();
   
 
@@ -29,7 +32,16 @@ function App() {
           <Route path="/product/:productId" element={<ProductPage product={ProductList} />} />
           <Route path="/home" element={<Home />} />
           <Route path="/cart" element={showCart && <CartList key="cart" cart={cart} />} />
-          <Route path="/auth" element={<AuthForm />} />
+          {!authCtx.isLoggedIn && (
+          <Route path="/auth" 
+          element={<AuthForm />} 
+          />
+          )}
+          {authCtx.isLoggedIn && (
+          <Route path="/profile" 
+          element={<UserProfile />} 
+          />
+          )}
         </Routes>
       </Router>
   );

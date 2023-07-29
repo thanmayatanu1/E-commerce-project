@@ -1,13 +1,13 @@
 import {useRef, useContext} from 'react';
 import AuthContext from '../Authentication/AuthContext';
-import {useHistory} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const ProfileForm = () => {
-    const history = useHistory();
+     const navigate = useNavigate();
     const newPasswordInputRef = useRef();
     const authCtx = useContext(AuthContext);
 
-    constsubmitHandler = (event) => {
+    const submitHandler = (event) => {
         event.preventDefault();
 
         const enteredNewPassword = newPasswordInputRef.current.value;
@@ -24,7 +24,7 @@ const ProfileForm = () => {
             }
         }).then(res => {
             // asumption always successful
-            history.replace('/');
+             navigate.replace('/');
         });
         
 
