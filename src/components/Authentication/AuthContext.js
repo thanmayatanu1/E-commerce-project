@@ -42,7 +42,7 @@ export const AuthContextProvider = (props) => {
       const expirationTime = localStorage.getItem('expirationTime');
       const currentTime = new Date().getTime();
 
-      if (currentTime >= expirationTime) {
+      if (currentTime <= expirationTime) {
         logoutHandler();
         alert('Your session has expired. Please log in again.');
       } else {

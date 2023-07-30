@@ -20,7 +20,6 @@ function Header(props) {
       <NavLink  to="/" activeClassName="active">Store</NavLink>
       <NavLink  to="/about" activeClassName="active">About</NavLink>
       <NavLink  to="/contact us" activeClassName="active">Contact Us</NavLink>
-      <NavLink  to="/fetchmovies" activeClassName="active">Add Movie</NavLink>
       <nav>
             <ul>
                 {!isLoggedIn && (
