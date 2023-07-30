@@ -10,7 +10,7 @@ import ContactUs from './components/ContactUS/contact us';
 import ProductPage from './components/Store/ProductPage';
 import { ProductList, useCart, handleFormSubmit } from './components/Store/ProductList';
 import AuthForm from './components/Authentication/AuthForm';
-import UserProfile from './components/Navbar/UserProfile';
+
 
 
 function AppContent() {
@@ -53,7 +53,7 @@ function AppContent() {
           <Route path="/auth" element={<AuthForm onLogin={loginHandler} />} />
         )}
         {authCtx.isLoggedIn && (
-          <Route path="/profile" element={<UserProfile onLogout={logoutHandler} />} />
+          <Route path="/" element={<Product product={ProductList} addToCart={addToCart} onLogout={logoutHandler} />} />
         )}
       </Routes>
     </>
