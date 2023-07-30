@@ -13,6 +13,7 @@ import AuthForm from './components/Authentication/AuthForm';
 
 
 
+
 function AppContent() {
   const authCtx = useContext(AuthContext);
   const { cart, showCart, addToCart, handleShow } = useCart();
@@ -45,7 +46,7 @@ function AppContent() {
       {!authCtx.isLoggedIn &&<Route path="/" element={<AuthForm />} />}
         <Route path="/about" element={<About />} />
         <Route path="/contact us" element={<ContactUs handleFormSubmit={handleFormSubmit} />} />
-        <Route path="/product/:productId" element={<ProductPage product={ProductList} />} />
+        <Route path="/product/:productId" element={<ProductPage products={ProductList} />} />
         
         <Route path="/home" element={<Home />} />
         <Route path="/cart" element={showCart && <CartList key="cart" cart={cart} />} />

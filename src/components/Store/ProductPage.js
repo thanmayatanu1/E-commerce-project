@@ -1,32 +1,31 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
-const ProductPage = ({ product }) => {
+function ProductPage({ products }) {
   const { productId } = useParams();
 
-  // Find the selected product based on the productId
-  const selectedProduct = product.find((p) => p.id === parseInt(productId));
+  const selectedProduct = products.find((item) => item.id === parseInt(productId));
 
   if (!selectedProduct) {
     return <div>Product not found</div>;
   }
 
+  const reviews = selectedProduct.reviews || []; // Ensure reviews array is defined
+
   return (
     <div>
       <h2>{selectedProduct.title}</h2>
-      <div>
-        {selectedProduct.images.map((image, index) => (
-          <img key={index} src={image} alt={`Product ${index}`} />
-        ))}
-      </div>
-      <h3>Reviews</h3>
-      <ul>
-        {selectedProduct.reviews.map((review, index) => (
-          <li key={index}>{review}</li>
-        ))}
-      </ul>
+      <img src={selectedProduct.imageUrl} alt={selectedProduct.title} />
+      <p>Price: Rs. {selectedProduct.price}</p>
+      <h3>Reviews:</h3>
+      {reviews.map((review, index) => (
+        <div key={index}>
+          <p>{review}</p>
+        </div>
+      ))}
+      <Link to="/">Back</Link>
     </div>
   );
-};
+}
 
 export default ProductPage;
