@@ -1,0 +1,34 @@
+.container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 100%;
+    padding: 10px;
+  }
+  
+  .about {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    font-size: 22px;
+  }
+  
+  .about h1 {
+    text-align: center;
+    font-size: 25px;
+    margin: 20px;
+    color: blueviolet;
+  }
+  
+  .about img {
+    float: left;
+    margin: 20px 50px;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+  }
+  
+  .about p {
+    font-size: 17px;
+    margin: 20px;
+    color: #777;
+  }
