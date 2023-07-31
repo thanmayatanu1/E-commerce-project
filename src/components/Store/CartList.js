@@ -1,13 +1,25 @@
-import { useEffect , useState } from 'react';
+import { useEffect , useState, useContext } from 'react';
+import axios from 'axios';
+import AuthContext from '../Authentication/AuthContext';
 
 function CartList ({cart}) {
+    const authCtx = useContext(AuthContext);
 
     const [CART, setCart ] = useState([])
 
     useEffect(() => {
-        setCart(cart)
-
-    }, [cart])
+        if (authCtx.token) {
+          // Make a GET request to the CRUD CRUD API to retrieve the cart items for the logged-in user
+          axios
+            .get(`https://crudcrud.com/api/81c0a8e26b3f40c0aaa4fcfe5227c486/cart?user=${authCtx.token}`)
+            .then((response) => {
+              setCart(response.data);
+            })
+            .catch((error) => {
+              console.log('Error retrieving cart items:', error);
+            });
+        }
+      }, [authCtx.token]);
 
 
     return (

@@ -1,5 +1,6 @@
-import  { useState } from 'react';
+import  { useState, useContext } from 'react';
 import axios from 'axios';
+import AuthContext from '../Authentication/AuthContext';
 
 export const ProductList = [
     {
@@ -54,8 +55,17 @@ export const ProductList = [
   export const useCart = () => {
     const [cart, setCart] = useState([]);
     const [showCart, setShowCart] = useState(false);
+    const authCtx = useContext(AuthContext);
   
     const addToCart = (data) => {
+      axios
+        .post(`https://crudcrud.com/api/81c0a8e26b3f40c0aaa4fcfe5227c486/cart?user=${authCtx.token}`, data)
+        .then((response) => {
+          console.log('Cart item added:', response.data);
+        })
+        .catch((error) => {
+          console.log('Error adding cart item:', error);
+        });
       setCart([...cart, { ...data, quantity: 1 }]);
     };
   
