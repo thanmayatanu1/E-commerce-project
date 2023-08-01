@@ -1,9 +1,9 @@
-import { useContext, useEffect } from 'react';
-import { useNavigate, BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
+import { useNavigate, BrowserRouter as Router, Routes, Route , } from 'react-router-dom';
 import AuthContext from './components/Authentication/AuthContext';
 import Header from './components/Navbar/Header';
 import Product from './components/Store/Product';
-import CartList from './components/Store/CartList';
+import CartList from './components/Cart/CartList';
 import About from './components/About/About';
 import Home from './components/Home/Home';
 import ContactUs from './components/ContactUS/contact us';
@@ -17,7 +17,7 @@ import UserProfile from './components/Navbar/UserProfile';
 
 function AppContent() {
   const authCtx = useContext(AuthContext);
-  const { cart, showCart, addToCart, handleShow } = useCart();
+  const { cart,  addToCart,  } = useCart();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +26,7 @@ function AppContent() {
       authCtx.login(token);
     }
   }, [authCtx]);
+
 
   const loginHandler = (token) => {
     authCtx.login(token);
@@ -39,9 +40,20 @@ function AppContent() {
     navigate('/auth'); // Redirect to authentication page
   };
 
+  const [showCart, setShowCart] = useState(false);
+
+  const handleShowCart = () => {
+    setShowCart(true);
+  };
+
+  const handleCloseCart = () => {
+    setShowCart(false);
+    navigate('/'); 
+  };
+
   return (
     <>
-      <Header count={cart.length} handleShow={handleShow} />
+      <Header count={cart.length} handleShow={handleShowCart} />
       <Routes>
       {authCtx.isLoggedIn &&<Route path="/" element={<Product product={ProductList} addToCart={addToCart}  />} />}
       {!authCtx.isLoggedIn &&<Route path="/" element={<AuthForm />} />}
@@ -52,7 +64,18 @@ function AppContent() {
         <Route path="/home" element={<Home />} />
         {authCtx.isLoggedIn && (
         <Route path="/profile" element={<UserProfile />} />)}
-        <Route path="/cart" element={showCart && <CartList key="cart" cart={cart} />} />
+         <Route path="/cart" element={
+            showCart && (
+              <div className="modal">
+                <div className="modal-content">
+                  <button onClick={handleCloseCart} className="close-button">
+                    Close
+                  </button>
+                  <CartList cart={cart} onClose={handleCloseCart} />
+         </div>
+        </div>
+         )} 
+         />
         {!authCtx.isLoggedIn && (
           <Route path="/auth" element={<AuthForm onLogin={loginHandler} />} />
         )}
@@ -60,6 +83,8 @@ function AppContent() {
           <Route path="/auth" element={<Product product={ProductList} addToCart={addToCart} onLogout={logoutHandler} />} />
         )}
       </Routes>
+      
+      
     </>
   );
 }
