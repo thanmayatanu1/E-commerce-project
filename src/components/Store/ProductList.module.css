@@ -45,3 +45,15 @@
     font-size: 15px;
     font-weight: bold;
   }
+  .product {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .productitem {
+    flex: 0 0 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+  }
